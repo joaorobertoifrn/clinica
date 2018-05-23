@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<div class="navbar-default sidebar" role="navigation">
+	<div class="sidebar-nav slimscrollsidebar">
+		<div class="sidebar-head">
+			<h3>
+				<span class="fa-fw open-close"> <i class="ti-close ti-menu"></i>
+				</span> <span class="hide-menu">Menu</span>
+			</h3>
+		</div>
+		<ul class="nav" id="side-menu">
+			<li style="padding: 70px 0 0;"><a th:href="@{/}"
+				class="waves-effect"> <i class="fa fa-clock-o fa-fw"
+					aria-hidden="true"></i>Dashboard
+			</a></li>
+			<li><a th:href="@{/Paciente/}" class="waves-effect"> <i
+					class="fa fa-user fa-fw" aria-hidden="true"></i>Pacientes
+			</a></li>
+			<li><a th:href="@{/Agendamento/}" class="waves-effect"> <i
+					class="fa fa-table fa-fw" aria-hidden="true"></i>Agendamento
+			</a></li>
+			<li><a th:href="@{/Profissional/}" class="waves-effect"> <i
+					class="fa fa-font fa-fw" aria-hidden="true"></i>Profissional
+			</a></li>
+			<li><a th:href="@{/Atendimento/}" class="waves-effect"> <i
+					class="fa fa-globe fa-fw" aria-hidden="true"></i>Local Atendimento
+			</a></li>
+			<li><a th:href="@{/Convenio/}" class="waves-effect"> <i
+					class="fa fa-columns fa-fw" aria-hidden="true"></i>Convênio
+			</a></li>
+		</ul>
+	</div>
+</div>
+</html>

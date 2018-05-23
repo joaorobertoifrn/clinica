@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/img/favicon.png}" />
+    <title>Agenda Clinica</title>
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/dist/css/bootstrap.min.css}" />
+    <!-- Data Table CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/jquery.dataTables.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/buttons.dataTables.min.css}" />    
+    <!-- Menu CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/sidebar-nav.min.css}" />
+    <!-- animation CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/animate.css}" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <!-- color CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/colors/default.css}" id="theme" />
+</head>
+
+<body>
+    <div id="wrapper">
+        <header layout:include="Cabecalho"></header>
+        <div layout:include="Menu"></div>
+        <section layout:fragment="conteudo">
+        </section>
+        <footer layout:include="Rodape"></footer>
+    </div>
+    <!-- jQuery -->
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script th:src="@{/bootstrap/dist/js/bootstrap.min.js}"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script th:src="@{/js/sidebar-nav.min.js}"></script>
+    <!--slimscroll JavaScript -->
+    <script th:src="@{/js/jquery.slimscroll.js}"></script>
+    <!--Wave Effects -->
+    <script th:src="@{/js/waves.js}"></script>
+    <!-- Custom Theme JavaScript -->
+    <script th:src="@{/js/custom.min.js}"></script>
+    <!--Counter js -->
+    <script th:src="@{/js/jquery.waypoints.js}"></script>
+    <script th:src="@{/js/jquery.counterup.min.js}"></script>
+    <!-- chartist chart -->
+    <script th:src="@{/js/chartist.min.js}"></script>
+    <script th:src="@{/js/chartist-plugin-tooltip.min.js}"></script>
+    <!-- Sparkline chart JavaScript -->
+    <script th:src="@{/js/jquery.sparkline.min.js}"></script>
+    <!-- Custom Theme JavaScript -->
+    <script th:src="@{/js/custom.min.js}"></script>
+    <script th:src="@{/js/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/js/dataTables.buttons.min.js}"></script>
+    <script th:src="@{/js/buttons.flash.min.js}"></script>
+    <script th:src="@{/js/dashboard1.js}"></script>
+    <script th:src="@{/js/jquery.toast.js}"></script>
+    <script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+        $(document).ready(function() {
+            var table = $('#example').DataTable({
+                "columnDefs": [{
+                    "visible": false,
+                    "targets": 2
+                }],
+                "order": [
+                    [2, 'asc']
+                ],
+                "displayLength": 25,
+                "drawCallback": function(settings) {
+                    var api = this.api();
+                    var rows = api.rows({
+                        page: 'current'
+                    }).nodes();
+                    var last = null;
+                    api.column(2, {
+                        page: 'current'
+                    }).data().each(function(group, i) {
+                        if (last !== group) {
+                            $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                            last = group;
+                        }
+                    });
+                }
+            });
+            
+        });
+    });
+    
+    </script>        
+</body>
+
+</html>
