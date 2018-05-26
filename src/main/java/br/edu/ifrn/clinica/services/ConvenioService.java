@@ -6,20 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import br.edu.ifrn.clinica.dto.PacienteDTO;
+import br.edu.ifrn.clinica.dto.ConvenioDTO;
+import br.edu.ifrn.clinica.model.Convenio;
 import br.edu.ifrn.clinica.model.Paciente;
-import br.edu.ifrn.clinica.repository.PacienteRepository;
+import br.edu.ifrn.clinica.repository.ConvenioRepository;
 import br.edu.ifrn.clinica.services.exceptions.DataIntegrityException;
 import br.edu.ifrn.clinica.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class PacienteService {
+public class ConvenioService {
 	
 	@Autowired
-	private PacienteRepository repo;
+	private ConvenioRepository repo;
 	
-	public Paciente find(Long id) {
-		Paciente obj = repo.findOne(id);
+	public Convenio find(Long id) {
+		Convenio obj = repo.findOne(id);
 		if (obj == null) {
 			throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id
 					+ ", Tipo: " + Paciente.class.getName());
@@ -27,7 +28,7 @@ public class PacienteService {
 		return obj;
 	}
 	
-	public void salvar(Paciente obj) {
+	public void salvar(Convenio obj) {
 		try {
 			repo.save(obj);
 		} catch (DataIntegrityViolationException e) {
@@ -41,15 +42,15 @@ public class PacienteService {
 			repo.delete(id);
 		}
 		catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível excluir um Paciente");
+			throw new DataIntegrityException("Não é possível excluir um Convenio");
 		}
 	}
 	
-	public List<Paciente> findAll() {
+	public List<Convenio> findAll() {
 		return repo.findAll();
 	}
 
-	public Paciente fromDTO(PacienteDTO objDto) {
+	public Paciente fromDTO(ConvenioDTO objDto) {
 		return new Paciente(objDto.getId(), objDto.getNome());
 	}
 }

@@ -11,6 +11,17 @@ package br.edu.ifrn.clinica.model.enums;
  */
 public enum TipoAtendimento {
 
-    HORA_MARCADA, HORARIO_CHEGADA;
+    HORA_MARCADA("Hora Marcada"), 
+    HORARIO_CHEGADA("Hora de Chegada");
 
+	private String descricao;
+	
+	TipoAtendimento(String descricao) {
+		this.descricao = descricao;
+	}
+	
+	public String getDescricao() {
+		return descricao;
+	}	
+	
 }

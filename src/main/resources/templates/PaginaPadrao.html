@@ -16,12 +16,17 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/buttons.dataTables.min.css}" />    
     <!-- Menu CSS -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/sidebar-nav.min.css}" />
+    <!-- Color picker plugins css -->
+    <link th:href="@{/css/asColorPicker.css}" rel="stylesheet"/>
+    <!-- Date picker plugins css -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-datepicker.standalone.min.css}"/>
     <!-- animation CSS -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/animate.css}" />
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <!-- color CSS -->
-    <link rel="stylesheet" type="text/css" th:href="@{/css/colors/default.css}" id="theme" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/colors/megna-dark.css}" id="theme" />
+    
 </head>
 
 <body>
@@ -59,6 +64,17 @@
     <script th:src="@{/js/buttons.flash.min.js}"></script>
     <script th:src="@{/js/dashboard1.js}"></script>
     <script th:src="@{/js/jquery.toast.js}"></script>
+    <script th:src="@{/js/clinica.js}"></script>
+    <script th:src="@{/js/validator.js}"></script>
+    <!--Style Switcher -->
+    <script src="/js/jQuery.style.switcher.js"></script>
+    <!-- Color Picker Plugin JavaScript -->
+    <script th:src="@{/js/jquery-asColor.js}"></script>
+    <script th:src="@{/js/jquery-asGradient.js}"></script>
+    <script th:src="@{/js/jquery-asColorPicker.min.js}"></script>
+    <!-- Date Picker Plugin JavaScript -->
+    <script th:src="@{/js/bootstrap-datepicker.min.js}"></script>
+	<script th:src="@{/js/bootstrap-datepicker.pt-BR.min.js}"></script>
     <script>
     $(document).ready(function() {
         $('#myTable').DataTable();

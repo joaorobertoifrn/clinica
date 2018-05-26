@@ -1,5 +1,17 @@
 package br.edu.ifrn.clinica.model.enums;
 
 public enum Sexo {
-    MASCULINO, FEMININO;
+	
+	MASCULINO("Masculino"),
+	FEMININO("Feminino");
+	
+	private String descricao;
+	
+	Sexo(String descricao) {
+		this.descricao = descricao;
+	}
+	
+	public String getDescricao() {
+		return descricao;
+	}
 }

@@ -5,7 +5,7 @@
     layout:decorator="PaginaPadrao">
 
 <head>
-    <title>Paciente</title>
+    <title>Convênio</title>
 </head>
 
 <section layout:fragment="conteudo">
@@ -13,15 +13,15 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Paciente</h4> </div>
+                        <h4 class="page-title">Convênio</h4> </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                      
-                        <a th:href="@{/Paciente/novo}" class="btn btn-primary pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Cadastrar</a>   
+                        <a th:href="@{/Convenio/novo}" class="btn btn-primary pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Cadastrar</a>   
                         
                         <ol class="breadcrumb">
                             <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Paciente</a></li>
-                            <li class="active">Paciente</li>
+                            <li><a href="#">Convênio</a></li>
+                            <li class="active">Convênio</li>
                         </ol>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -30,14 +30,14 @@
                 <div class="row">
                     <div class="col-lg-4 col-sm-6 col-xs-12">
                         <div class="white-box analytics-info">
-                            <h3 class="box-title">Total de Pacientes</h3>
+                            <h3 class="box-title">Total de Convênios</h3>
                             <ul class="list-inline two-part">
                                 <li>
                                     <div id="sparklinedash"></div>
                                 </li>
                                 <li class="text-right">
                                     <i class="ti-arrow-up text-success"></i>
-                                    <span class="counter text-success" th:text="${listaPacientes}">1</span>
+                                    <span class="counter text-success" th:text="${listaConvenios}">1</span>
                                 </li>
                             </ul>
                         </div>
@@ -51,30 +51,32 @@
                                     <thead>
                                         <tr>
                                         	<th>#</th>
-                                        	<th>CPF</th>
+                                        	<th>CNPJ</th>
                                             <th>Nome</th>
-                                            <th>Email</th>
+                                            <th>Registro ANS</th>
+                                            <th>Telefone</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="paciente : ${pacientes}">
-                                            <td th:text="${paciente.id}"></td>
-                                            <td th:text="${paciente.cpf}"></td>
-                                            <td th:text="${paciente.nome}"></td>
-                                            <td th:text="${paciente.email}"></td>
+                                        <tr th:each="convenio : ${convenios}">
+                                            <td th:text="${convenio.id}"></td>
+                                            <td th:text="${convenio.cnpj}"></td>
+                                            <td th:text="${convenio.nome}"></td>
+                                            <td th:text="${convenio.registroANS}"></td>
+                                            <td th:text="${convenio.telefone}"></td>
                                             <td class="text-center">
-		   										<a class="btn btn-link btn-xs" th:href="@{/Paciente/Editar/{id}(id=${paciente.id})}">
+		   										<a class="btn btn-link btn-xs" th:href="@{/Convenio/Editar/{id}(id=${convenio.id})}">
 		   											<span class="fa fa-pencil-square-o"></span>
 		   										</a>
 						   						<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#confirmacaoExclusaoModal"
-						   								th:attr="data-id=${paciente.id}, data-descricao=${paciente.nome}">
+						   								th:attr="data-id=${convenio.id}, data-descricao=${convenio.nome}">
 						   							<span class="fa fa-times-circle"></span>
 						   						</a>
 						   					</td>
                                         </tr>
                                         <tr>
-		   									<td colspan="6" th:if="${#lists.isEmpty(pacientes)}">Nenhum Paciente foi encontrado</td>
+		   									<td colspan="6" th:if="${#lists.isEmpty(convenios)}">Nenhum Convênio foi encontrado</td>
 		   								</tr>
                                     </tbody>
                                 </table>
