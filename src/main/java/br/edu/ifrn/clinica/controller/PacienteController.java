@@ -97,7 +97,7 @@ public class PacienteController {
 		service.delete(id);
 		
 		attributes.addFlashAttribute("mensagem", "Paciente Excluido com sucesso!");
-		return "redirect:/Paciente/novo";
+		return "redirect:/Paciente/";
 	}
 	
 	@ModelAttribute("listaCidades")

@@ -10,7 +10,7 @@ $('#confirmacaoExclusaoModal').on('show.bs.modal', function(event) {
 	if (!action.endsWith('/')) {
 		action += '/';
 	}
-	form.attr('action', action + codigoTitulo);
+	form.attr('action', action + id);
 	
-	modal.find('.modal-body span').html('Tem certeza que deseja excluir o registro <strong>' + descricaoTitulo + '</strong>?');
+	modal.find('.modal-body span').html('Tem certeza que deseja excluir o registro <strong>' + descricao + '</strong>?');
 });
