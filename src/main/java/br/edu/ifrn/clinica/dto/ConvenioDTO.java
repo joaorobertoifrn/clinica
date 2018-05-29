@@ -11,9 +11,8 @@ import br.edu.ifrn.clinica.model.Convenio;
 public class ConvenioDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	
-    private Long id;
-    private String nome;
+	private Long id;
+	private String nome;
     private String registroANS;
     private String razaoSocial;
     @CNPJ
@@ -27,13 +26,11 @@ public class ConvenioDTO implements Serializable {
 	
     public ConvenioDTO(){
     	
-    }
-    
+    }  
     
     public ConvenioDTO(Convenio obj) {
-		super();
-		id = obj.getId();
-		nome = obj.getNome();
+    	id = obj.getId();
+    	nome = obj.getNome();
 		registroANS = obj.getRegistroANS();
 		razaoSocial = obj.getRazaoSocial();
 		cnpj = obj.getCnpj();
@@ -41,20 +38,24 @@ public class ConvenioDTO implements Serializable {
 		telefone = obj.getTelefone();
 		email = obj.getEmail();
 		periodoRetorno = obj.getPeriodoRetorno();
-		particular = obj.getParticular();
 	}
+    
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public String getRegistroANS() {
 		return registroANS;
 	}

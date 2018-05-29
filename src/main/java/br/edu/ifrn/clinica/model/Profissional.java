@@ -1,12 +1,17 @@
 package br.edu.ifrn.clinica.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+
+import br.edu.ifrn.clinica.model.enums.Sexo;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
@@ -29,7 +34,30 @@ public class Profissional extends Pessoa implements Serializable {
     @ManyToMany
     private List<Especialidade> especialidades;
 
-    public String getConselhoProfissional() {
+    public Profissional() {
+    	
+    }
+    
+    
+    
+    public Profissional(Long id, String nome, String email, Sexo sexo, Date dataNascimento, String cpf, String rg,
+			String orgaoEmissor, String nomeSocial, String cns, String cep, String endereco, Integer numero,
+			String complemento, String bairro, Cidade cidade, String nomePai, String nomeMae, Set<String> telefones) {
+		super(id, nome, email, sexo, dataNascimento, cpf, rg, orgaoEmissor, nomeSocial, cns, cep, endereco, numero, complemento,
+				bairro, cidade, nomePai, nomeMae, telefones);
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	public Profissional(Long id, String nome, String conselhoProfissional, String estadoConselho, String numeroConselho) {
+		super(id, nome);
+		this.conselhoProfissional = conselhoProfissional;
+		this.estadoConselho = estadoConselho;
+		this.numeroConselho = numeroConselho;
+	}
+
+	public String getConselhoProfissional() {
         return conselhoProfissional;
     }
 

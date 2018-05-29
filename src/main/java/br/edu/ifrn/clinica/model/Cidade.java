@@ -21,7 +21,17 @@ public class Cidade implements Serializable {
     @ManyToOne
     private Estado estado;
 
-    public Integer getId() {
+    public Cidade() {
+    	
+    }
+    
+    public Cidade(Integer id, String nome) {
+		super();
+		this.id = id;
+		this.nome = nome;
+	}
+
+	public Integer getId() {
         return id;
     }
 

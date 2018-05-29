@@ -39,7 +39,26 @@ public class Convenio implements Serializable {
     @Column(nullable = false)
     private boolean particular;
     
-    public Long getId() {
+    
+    public Convenio() {
+    	
+    }
+    
+    public Convenio( String registroANS, String razaoSocial, String cnpj, String codigoCNS,
+			String telefone, String email, Integer periodoRetorno) {
+		this.registroANS = registroANS;
+		this.razaoSocial = razaoSocial;
+		this.cnpj = cnpj;
+		this.codigoCNS = codigoCNS;
+		this.telefone = telefone;
+		this.email = email;
+		this.periodoRetorno = periodoRetorno;
+	}
+
+
+
+
+	public Long getId() {
         return id;
     }
 

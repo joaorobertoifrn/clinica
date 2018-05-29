@@ -6,28 +6,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import br.edu.ifrn.clinica.dto.ConvenioDTO;
-import br.edu.ifrn.clinica.model.Convenio;
-import br.edu.ifrn.clinica.repository.ConvenioRepository;
+import br.edu.ifrn.clinica.dto.CidadeDTO;
+import br.edu.ifrn.clinica.model.Cidade;
+import br.edu.ifrn.clinica.repository.CidadeRepository;
 import br.edu.ifrn.clinica.services.exceptions.DataIntegrityException;
 import br.edu.ifrn.clinica.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class ConvenioService {
+public class CidadeService {
 	
 	@Autowired
-	private ConvenioRepository repo;
+	private CidadeRepository repo;
 	
-	public Convenio find(Long id) {
-		Convenio obj = repo.findOne(id);
+	public Cidade find(Long id) {
+		Cidade obj = repo.findOne(id);
 		if (obj == null) {
 			throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id
-					+ ", Tipo: " + Convenio.class.getName());
+					+ ", Tipo: " + Cidade.class.getName());
 		}
 		return obj;
 	}
 	
-	public void salvar(Convenio obj) {
+	public void salvar(Cidade obj) {
 		try {
 			repo.save(obj);
 		} catch (DataIntegrityViolationException e) {
@@ -41,16 +41,15 @@ public class ConvenioService {
 			repo.delete(id);
 		}
 		catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível excluir um Convenio");
+			throw new DataIntegrityException("Não é possível excluir um Cidade");
 		}
 	}
 	
-	public List<Convenio> findAll() {
+	public List<Cidade> findAll() {
 		return repo.findAll();
 	}
 
-	public Convenio fromDTO(ConvenioDTO objDto) {
-		return new Convenio( objDto.getRegistroANS(), objDto.getRazaoSocial(), objDto.getCnpj(),
-				objDto.getCodigoCNS(), objDto.getTelefone(),objDto.getEmail(), objDto.getPeriodoRetorno());
+	public Cidade fromDTO(CidadeDTO objDto) {
+		return new Cidade( objDto.getId(), objDto.getNome());
 	}
 }

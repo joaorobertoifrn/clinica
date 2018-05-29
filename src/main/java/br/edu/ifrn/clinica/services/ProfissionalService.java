@@ -6,28 +6,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import br.edu.ifrn.clinica.dto.ConvenioDTO;
-import br.edu.ifrn.clinica.model.Convenio;
-import br.edu.ifrn.clinica.repository.ConvenioRepository;
+import br.edu.ifrn.clinica.dto.ProfissionalDTO;
+import br.edu.ifrn.clinica.model.Profissional;
+import br.edu.ifrn.clinica.repository.ProfissionalRepository;
 import br.edu.ifrn.clinica.services.exceptions.DataIntegrityException;
 import br.edu.ifrn.clinica.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class ConvenioService {
+public class ProfissionalService {
 	
 	@Autowired
-	private ConvenioRepository repo;
+	private ProfissionalRepository repo;
 	
-	public Convenio find(Long id) {
-		Convenio obj = repo.findOne(id);
+	public Profissional find(Long id) {
+		Profissional obj = repo.findOne(id);
 		if (obj == null) {
 			throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id
-					+ ", Tipo: " + Convenio.class.getName());
+					+ ", Tipo: " + Profissional.class.getName());
 		}
 		return obj;
 	}
 	
-	public void salvar(Convenio obj) {
+	public void salvar(Profissional obj) {
 		try {
 			repo.save(obj);
 		} catch (DataIntegrityViolationException e) {
@@ -45,12 +45,11 @@ public class ConvenioService {
 		}
 	}
 	
-	public List<Convenio> findAll() {
+	public List<Profissional> findAll() {
 		return repo.findAll();
 	}
 
-	public Convenio fromDTO(ConvenioDTO objDto) {
-		return new Convenio( objDto.getRegistroANS(), objDto.getRazaoSocial(), objDto.getCnpj(),
-				objDto.getCodigoCNS(), objDto.getTelefone(),objDto.getEmail(), objDto.getPeriodoRetorno());
+	public Profissional fromDTO(ProfissionalDTO objDto) {
+		return new Profissional(objDto.getId(), objDto.getNome(), objDto.getConselhoProfissional(), objDto.getEstadoConselho(), objDto.getNumeroConselho());
 	}
 }

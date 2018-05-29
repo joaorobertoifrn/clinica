@@ -13,7 +13,7 @@ import br.edu.ifrn.clinica.services.exceptions.DataIntegrityException;
 import br.edu.ifrn.clinica.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class ConvenioService {
+public class TipoProfissionalService {
 	
 	@Autowired
 	private ConvenioRepository repo;

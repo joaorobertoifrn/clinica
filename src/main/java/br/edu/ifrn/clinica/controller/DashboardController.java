@@ -10,7 +10,7 @@ import br.edu.ifrn.clinica.repository.PacienteRepository;
 @Controller
 public class DashboardController {
 	
-	private static final String DASHBOARD_VIEW = "Dashboard";
+	private static final String DASHBOARD_VIEW = "Dashboard/Dashboard";
 	
 	@Autowired
 	private PacienteRepository pacientes;	

@@ -102,6 +102,12 @@ public class Pessoa implements Serializable {
 		this.telefones = telefones;
 	}
 
+	public Pessoa(Long id, String nome) {
+		this.id = id;
+		this.nome = nome;
+	}
+
+
 	public Long getId() {
         return id;
     }

@@ -25,8 +25,8 @@ import br.edu.ifrn.clinica.services.ConvenioService;
 @RequestMapping(value="/Convenio")
 public class ConvenioController {
 	
-	private static final String CONVENIO_VIEW = "Convenio";
-	private static final String CONVENIO_CADASTRO_VIEW = "ConvenioCadastro";
+	private static final String CONVENIO_VIEW = "Convenio/Convenio";
+	private static final String CONVENIO_CADASTRO_VIEW = "Convenio/ConvenioCadastro";
 	
 	@Autowired
 	private ConvenioService service;
@@ -84,7 +84,7 @@ public class ConvenioController {
 		service.delete(id);
 		
 		attributes.addFlashAttribute("mensagem", "Convenio Excluido com sucesso!");
-		return "redirect:/Convenio/novo";
+		return "redirect:/Convenio/";
 	}
 	
 }

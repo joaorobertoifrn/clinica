@@ -17,78 +17,78 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.edu.ifrn.clinica.dto.PacienteDTO;
+import br.edu.ifrn.clinica.dto.ProfissionalDTO;
 import br.edu.ifrn.clinica.model.Cidade;
 import br.edu.ifrn.clinica.model.Convenio;
-import br.edu.ifrn.clinica.model.Paciente;
+import br.edu.ifrn.clinica.model.Profissional;
 import br.edu.ifrn.clinica.model.enums.Sexo;
 import br.edu.ifrn.clinica.repository.CidadeRepository;
 import br.edu.ifrn.clinica.repository.ConvenioRepository;
-import br.edu.ifrn.clinica.repository.PacienteRepository;
-import br.edu.ifrn.clinica.services.PacienteService;
+import br.edu.ifrn.clinica.repository.ProfissionalRepository;
+import br.edu.ifrn.clinica.services.ProfissionalService;
 
 
 @Controller
-@RequestMapping(value="/Paciente")
-public class PacienteController {
+@RequestMapping(value="/Profissional")
+public class ProfissionalController {
 	
-	private static final String PACIENTE_VIEW = "Paciente/Paciente";
-	private static final String PACIENTE_CADASTRO_VIEW = "Paciente/PacienteCadastro";
-	
-	@Autowired
-	private PacienteService service;
+	private static final String PROFISSIONAL_VIEW = "Profissional/Profissional";
+	private static final String PROFISSIONAL_CADASTRO_VIEW = "Profissional/ProfissionalCadastro";
 	
 	@Autowired
-	private PacienteRepository pacientes;
+	private ProfissionalService service;
 	
 	@Autowired
 	private CidadeRepository cidades;
 	
 	@Autowired
 	private ConvenioRepository convenios;
+	
+	@Autowired
+	private ProfissionalRepository profissionais;
 
 	@GetMapping("/")
 	public ModelAndView paciente() {
-		List<Paciente> list = service.findAll();
-		List<PacienteDTO> listDto = list.stream().map(obj -> new PacienteDTO(obj)).collect(Collectors.toList());
-		ModelAndView mv = new ModelAndView(PACIENTE_VIEW);
-		mv.addObject("listaPacientes", pacientes.count());
-		mv.addObject("pacientes", listDto);
+		List<Profissional> list = service.findAll();
+		List<ProfissionalDTO> listDto = list.stream().map(obj -> new ProfissionalDTO(obj)).collect(Collectors.toList());
+		ModelAndView mv = new ModelAndView(PROFISSIONAL_VIEW);
+		mv.addObject("listaProfissionais", profissionais.count());
+		mv.addObject("profissionais", listDto);
 		return mv;
 	}
 	
 	@RequestMapping("/novo")
 	public ModelAndView novo() {
-		ModelAndView mv = new ModelAndView(PACIENTE_CADASTRO_VIEW);
-		mv.addObject(new Paciente());
+		ModelAndView mv = new ModelAndView(PROFISSIONAL_CADASTRO_VIEW);
+		mv.addObject(new Profissional());
 		return mv;
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Paciente> find(@PathVariable Long id) {
-		Paciente obj = service.find(id);
+	public ResponseEntity<Profissional> find(@PathVariable Long id) {
+		Profissional obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String salvar(@Validated Paciente paciente, Errors errors, RedirectAttributes attributes) {
+	public String salvar(@Validated Profissional profissional, Errors errors, RedirectAttributes attributes) {
 		if (errors.hasErrors()) {
-			return PACIENTE_CADASTRO_VIEW;
+			return PROFISSIONAL_CADASTRO_VIEW;
 		}
 		try {
-			service.salvar(paciente);
-			attributes.addFlashAttribute("mensagem", "Paciente Salvo com sucesso!");
-			return "redirect:/Paciente/novo";
+			service.salvar(profissional);
+			attributes.addFlashAttribute("mensagem", "Convenio Salvo com sucesso!");
+			return "redirect:/Profissional/novo";
 		} catch (Exception e) {
-			errors.rejectValue("Paciente", null, e.getMessage());
-			return PACIENTE_CADASTRO_VIEW;
+			errors.rejectValue("Profissional", null, e.getMessage());
+			return PROFISSIONAL_CADASTRO_VIEW;
 		}
 	}
 	
 	@RequestMapping(value="/Editar/{id}")
-	public ModelAndView edicao(@PathVariable("id") Paciente paciente) {
-		ModelAndView mv = new ModelAndView(PACIENTE_CADASTRO_VIEW); 
-		mv.addObject(paciente);
+	public ModelAndView edicao(@PathVariable("id") Profissional profissional) {
+		ModelAndView mv = new ModelAndView(PROFISSIONAL_CADASTRO_VIEW); 
+		mv.addObject(profissional);
 		return mv;
 	}
 	
@@ -96,16 +96,16 @@ public class PacienteController {
 	public String excluir(@PathVariable Long id, RedirectAttributes attributes) {
 		service.delete(id);
 		
-		attributes.addFlashAttribute("mensagem", "Paciente Excluido com sucesso!");
-		return "redirect:/Paciente/";
+		attributes.addFlashAttribute("mensagem", "Profissional Excluido com sucesso!");
+		return "redirect:/Profissional/";
 	}
-	
+
 	@ModelAttribute("listaCidades")
 	public List<Cidade> listaCidades() {
 		List<Cidade> list = cidades.findAll();
 		return list;
-	}	
-	
+	}
+
 	@ModelAttribute("listaSexo")
 	public List<Sexo> listaSexo() {
 		return Arrays.asList(Sexo.values());
@@ -115,5 +115,6 @@ public class PacienteController {
 	public List<Convenio> listaConvenio() {
 		List<Convenio> list = convenios.findAll();
 		return list;
-	}		
+	}			
+	
 }
