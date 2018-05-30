@@ -20,6 +20,15 @@
     <link th:href="@{/css/asColorPicker.css}" rel="stylesheet"/>
     <!-- Date picker plugins css -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-datepicker.standalone.min.css}"/>
+    
+	<link rel="stylesheet" type="text/css" th:href="@{/js/custom-select/custom-select.css}"  />
+    <link th:href="@{/js/custom-select/custom-select.css}" rel="stylesheet" />
+    <link th:href="@{/js/switchery/dist/switchery.min.css}" rel="stylesheet" />
+    <link th:href="@{/js/bootstrap-select/bootstrap-select.min.css}" rel="stylesheet" />
+    <link th:href="@{/js/bootstrap-tagsinput/dist/bootstrap-tagsinput.css}" rel="stylesheet" />
+    <link th:href="@{/js/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css}" rel="stylesheet" />
+    <link th:href="@{/js/multiselect/css/multi-select.css}" rel="stylesheet" type="text/css" />    
+    
     <!-- animation CSS -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/animate.css}" />
     <!-- Custom CSS -->
@@ -75,40 +84,72 @@
     <!-- Date Picker Plugin JavaScript -->
     <script th:src="@{/js/bootstrap-datepicker.min.js}"></script>
 	<script th:src="@{/js/bootstrap-datepicker.pt-BR.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/switchery/dist/switchery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/custom-select/custom-select.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap-select/bootstrap-select.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/multiselect/js/jquery.multi-select.js}"></script>
     <script>
-    $(document).ready(function() {
-        $('#myTable').DataTable();
-        $(document).ready(function() {
-            var table = $('#example').DataTable({
-                "columnDefs": [{
-                    "visible": false,
-                    "targets": 2
-                }],
-                "order": [
-                    [2, 'asc']
-                ],
-                "displayLength": 25,
-                "drawCallback": function(settings) {
-                    var api = this.api();
-                    var rows = api.rows({
-                        page: 'current'
-                    }).nodes();
-                    var last = null;
-                    api.column(2, {
-                        page: 'current'
-                    }).data().each(function(group, i) {
-                        if (last !== group) {
-                            $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
-                            last = group;
-                        }
-                    });
-                }
-            });
-            
+    jQuery(document).ready(function() {
+        // Switchery
+        var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+        $('.js-switch').each(function() {
+            new Switchery($(this)[0], $(this).data());
         });
+        // For select 2
+        $(".select2").select2();
+        $('.selectpicker').selectpicker();
+        //Bootstrap-TouchSpin
+        $(".vertical-spin").TouchSpin({
+            verticalbuttons: true,
+            verticalupclass: 'ti-plus',
+            verticaldownclass: 'ti-minus'
+        });
+        var vspinTrue = $(".vertical-spin").TouchSpin({
+            verticalbuttons: true
+        });
+        if (vspinTrue) {
+            $('.vertical-spin').prev('.bootstrap-touchspin-prefix').remove();
+        }
+        $("input[name='tch1']").TouchSpin({
+            min: 0,
+            max: 100,
+            step: 0.1,
+            decimals: 2,
+            boostat: 5,
+            maxboostedstep: 10,
+            postfix: '%'
+        });
+        $("input[name='tch2']").TouchSpin({
+            min: -1000000000,
+            max: 1000000000,
+            stepinterval: 50,
+            maxboostedstep: 10000000,
+            prefix: '$'
+        });
+        $("input[name='tch3']").TouchSpin();
+        $("input[name='tch3_22']").TouchSpin({
+            initval: 40
+        });
+        $("input[name='tch5']").TouchSpin({
+            prefix: "pre",
+            postfix: "post"
+        });
+        // For multiselect
+        $('#Convenios').multiSelect();
+        $('#locaisAtendimentos').multiSelect();
+        $('#especialidades').multiSelect();
+        
+        $('#optgroup').multiSelect({
+            selectableOptgroup: true
+        });
+        
+     
     });
-    
-    </script>        
+
+    </script>	
+        
 </body>
 
 </html>

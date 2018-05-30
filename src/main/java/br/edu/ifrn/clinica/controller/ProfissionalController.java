@@ -20,10 +20,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.edu.ifrn.clinica.dto.ProfissionalDTO;
 import br.edu.ifrn.clinica.model.Cidade;
 import br.edu.ifrn.clinica.model.Convenio;
+import br.edu.ifrn.clinica.model.Especialidade;
+import br.edu.ifrn.clinica.model.LocalAtendimento;
 import br.edu.ifrn.clinica.model.Profissional;
 import br.edu.ifrn.clinica.model.enums.Sexo;
 import br.edu.ifrn.clinica.repository.CidadeRepository;
 import br.edu.ifrn.clinica.repository.ConvenioRepository;
+import br.edu.ifrn.clinica.repository.EspecialidadeRepository;
+import br.edu.ifrn.clinica.repository.LocalAtendimentoRepository;
 import br.edu.ifrn.clinica.repository.ProfissionalRepository;
 import br.edu.ifrn.clinica.services.ProfissionalService;
 
@@ -45,10 +49,16 @@ public class ProfissionalController {
 	private ConvenioRepository convenios;
 	
 	@Autowired
+	private EspecialidadeRepository especialidades;
+	
+	@Autowired
+	private LocalAtendimentoRepository locaisAtendimentos;
+	
+	@Autowired
 	private ProfissionalRepository profissionais;
 
 	@GetMapping("/")
-	public ModelAndView paciente() {
+	public ModelAndView profissional() {
 		List<Profissional> list = service.findAll();
 		List<ProfissionalDTO> listDto = list.stream().map(obj -> new ProfissionalDTO(obj)).collect(Collectors.toList());
 		ModelAndView mv = new ModelAndView(PROFISSIONAL_VIEW);
@@ -77,7 +87,7 @@ public class ProfissionalController {
 		}
 		try {
 			service.salvar(profissional);
-			attributes.addFlashAttribute("mensagem", "Convenio Salvo com sucesso!");
+			attributes.addFlashAttribute("mensagem", "Profissional Salvo com sucesso!");
 			return "redirect:/Profissional/novo";
 		} catch (Exception e) {
 			errors.rejectValue("Profissional", null, e.getMessage());
@@ -115,6 +125,18 @@ public class ProfissionalController {
 	public List<Convenio> listaConvenio() {
 		List<Convenio> list = convenios.findAll();
 		return list;
-	}			
+	}
+	
+	@ModelAttribute("listaEspecialidade")
+	public List<Especialidade> listaEspecialidade() {
+		List<Especialidade> list = especialidades.findAll();
+		return list;
+	}
+	
+	@ModelAttribute("listaLocaisAtendimentos")
+	public List<LocalAtendimento> listaLocaisAtendimentos() {
+		List<LocalAtendimento> list = locaisAtendimentos.findAll();
+		return list;
+	}	
 	
 }
