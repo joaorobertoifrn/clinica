@@ -44,7 +44,7 @@
 	                                                  <div class="form-group" th:classappend="${#fields.hasErrors('nome')} ? has-error">
 	                                                  	<label class="control-label col-md-2" for="nome">Nome Completo</label>
 	                                                    <div class="col-md-10">
-	                                                    	<input type="text" id="nome" placeholder="Nome Completo" class="form-control" th:field="*{nome}" data-error="Informe o Nome do Paciente" required="true"/>
+	                                                    	<input type="text" id="nome" placeholder="Nome Completo" class="form-control" th:field="*{nome}" data-error="Informe o Nome do Paciente" required="required"/>
 	                                                    	<div class="help-block with-errors"></div> 
 	                                                    </div>
 	                                                  </div>
@@ -54,7 +54,7 @@
 		                                              <div class="form-group" th:classappend="${#fields.hasErrors('email')} ? has-error">
 														<label class="col-md-2" for="email">Email</label>
 														<div class="col-md-10">
-															<input type="email" id="email" placeholder="email@dominio.com.br" class="form-control" th:field="*{email}" data-error="Informe um email válido" required="true"/>
+															<input type="email" id="email" placeholder="email@dominio.com.br" class="form-control" th:field="*{email}" data-error="Informe um email válido" required="required"/>
 															<div class="help-block with-errors"></div>
 														</div>
 													  </div>
@@ -66,7 +66,7 @@
 	                                                    <div class="form-group" th:classappend="${#fields.hasErrors('cpf')} ? has-error">
 	                                                        <label for="cpf" class="control-label col-md-2">CPF</label>
 	                                                        <div class="col-md-10">
-	                                                            <input id="cpf" placeholder="CPF" type="text" class="form-control" th:field="*{cpf}" data-error="Informe o cpf válido" required="true"/>
+	                                                            <input id="cpf" placeholder="CPF" type="text" class="form-control" th:field="*{cpf}" data-error="Informe o cpf válido" required="required"/>
 	                                                            <div class="help-block with-errors"></div> 
 	                                                        </div>
 	                                                    </div>
@@ -76,7 +76,7 @@
 	                                                    <div class="form-group" th:classappend="${#fields.hasErrors('rg')} ? has-error">
 	                                                        <label for="rg" class="control-label col-md-2">RG</label>
 	                                                        <div class="col-md-10">
-	                                                            <input id="rg" placeholder="Identidade" type="text" class="form-control" th:field="*{rg}" data-error="Informe o número da Identidade" required="true"/> 
+	                                                            <input id="rg" placeholder="Identidade" type="text" class="form-control" th:field="*{rg}" data-error="Informe o número da Identidade" required="required"/> 
 	                                                       		<div class="help-block with-errors"></div> 
 	                                                        </div>
 	                                                    </div>
@@ -86,7 +86,7 @@
 	                                                    <div class="form-group" th:classappend="${#fields.hasErrors('orgaoEmissor')} ? has-error">
 	                                                        <label for="orgaoEmissor" class="control-label col-md-3">Orgão Emissor</label>
 	                                                        <div class="col-md-9">
-	                                                            <input id="orgaoEmissor" placeholder="Orgão Emissor" type="text" class="form-control" th:field="*{orgaoEmissor}" data-error="Informe o Orgão emissor da Indentidade" required="true"/> 
+	                                                            <input id="orgaoEmissor" placeholder="Orgão Emissor" type="text" class="form-control" th:field="*{orgaoEmissor}" data-error="Informe o Orgão emissor da Indentidade" required="required"/> 
 	                                                        	<div class="help-block with-errors"></div>
 	                                                        </div>
 	                                                    </div>
@@ -99,7 +99,7 @@
                                                     <div class="form-group" th:classappend="${#fields.hasErrors('sexo')} ? has-error">
                                                         <label for="sexo" class="control-label col-md-3">Sexo</label>
                                                         <div class="col-md-9">
-                                                        	<select class="form-control" name="status" th:field="*{sexo}" required="true">
+                                                        	<select class="form-control" name="status" th:field="*{sexo}" required="required">
 																<option th:each="sexo : ${listaSexo}" th:value="${sexo}" th:text="${sexo.descricao}"></option>
                     										</select>
                                                             
@@ -115,7 +115,7 @@
                                                         <div class="input-group">
                                             				<input id="dataNascimento" th:field="*{dataNascimento}" type="text" class="form-control"
                                             				data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="pt-BR"
-															data-date-autoclose="true" data-date-today-highlight="true" data-date-orientation="bottom" placeholder="dd/mm/yyyy" data-error="Informe a data de Nascimento" required="true"/> 
+															data-date-autoclose="true" data-date-today-highlight="true" data-date-orientation="bottom" placeholder="dd/mm/yyyy" data-error="Informe a data de Nascimento" required="required"/> 
                                         				</div>
                                                         
                                                             <div class="help-block with-errors"></div> 
@@ -130,7 +130,7 @@
                                                     <div class="form-group" th:classappend="${#fields.hasErrors('nomeSocial')} ? has-error">
                                                         <label for="nomeSocial" class="control-label col-md-3">Nome Social</label>
                                                         <div class="col-md-9">
-															<input id="nomeSocial" th:field="*{nomeSocial}" type="text" class="form-control" placeholder="Nome Social" data-error="Informe o nome social" required="true"/>
+															<input id="nomeSocial" th:field="*{nomeSocial}" type="text" class="form-control" placeholder="Nome Social" data-error="Informe o nome social" required="required"/>
 															<div class="help-block with-errors"></div>     
                                                         </div>
                                                     </div>
@@ -140,7 +140,7 @@
                                                     <div class="form-group" th:classappend="${#fields.hasErrors('cns')} ? has-error">
                                                         <label for="cns" class="control-label col-md-3">CNS</label>
                                                         <div class="col-md-9">
-															<input id="cns" th:field="*{cns}" type="text" class="form-control" placeholder="cns" data-error="Informe o CNS do paciente" required="true"/>
+															<input id="cns" th:field="*{cns}" type="text" class="form-control" placeholder="cns" data-error="Informe o CNS do paciente" required="required"/>
 															<div class="help-block with-errors"></div>     
                                                         </div>
                                                     </div>
@@ -151,7 +151,7 @@
                                                     <div class="form-group" th:classappend="${#fields.hasErrors('nomePai')} ? has-error">
                                                         <label for="nomePai" class="control-label col-md-3">Nome do Pai</label>
                                                         <div class="col-md-9">
-															<input id="nomePai" th:field="*{nomePai}" type="text" class="form-control" placeholder="Nome do Pai" data-error="Informe o nome Pai" required="true"/>
+															<input id="nomePai" th:field="*{nomePai}" type="text" class="form-control" placeholder="Nome do Pai" data-error="Informe o nome Pai" required="required"/>
 															<div class="help-block with-errors"></div>     
                                                         </div>
                                                     </div>
@@ -161,7 +161,7 @@
                                                     <div class="form-group" th:classappend="${#fields.hasErrors('nomeMae')} ? has-error">
                                                         <label for="nomeMae" class="control-label col-md-3">Nome da Mãe</label>
                                                         <div class="col-md-9">
-															<input id="nomeMae" th:field="*{nomeMae}" type="text" class="form-control" placeholder="Nome da Mãe" data-error="Informe o nome da Mãe" required="true"/>
+															<input id="nomeMae" th:field="*{nomeMae}" type="text" class="form-control" placeholder="Nome da Mãe" data-error="Informe o nome da Mãe" required="required"/>
 															<div class="help-block with-errors"></div>     
                                                         </div>
                                                     </div>
@@ -178,7 +178,7 @@
                                                     <div class="form-group" th:classappend="${#fields.hasErrors('endereco')} ? has-error">
                                                         <label for="endereco" class="control-label col-md-3">Endereço</label>
                                                         <div class="col-md-9">
-															<input id="endereco" th:field="*{endereco}" type="text" class="form-control" placeholder="Endereço" data-error="Informe o nome da Rua do paciente" required="true"/>
+															<input id="endereco" th:field="*{endereco}" type="text" class="form-control" placeholder="Endereço" data-error="Informe o nome da Rua do paciente" required="required"/>
 															<div class="help-block with-errors"></div>     
                                                         </div>
                                                     </div>
@@ -198,7 +198,7 @@
                                                     <div class="form-group" th:classappend="${#fields.hasErrors('numero')} ? has-error">
                                                         <label for="numero" class="control-label col-md-3">Número</label>
                                                         <div class="col-md-9">
-															<input id="numero" th:field="*{numero}" type="number" class="form-control" placeholder="Número" data-error="Informe o número da residência do Paciente" required="true"/>
+															<input id="numero" th:field="*{numero}" type="number" class="form-control" placeholder="Número" data-error="Informe o número da residência do Paciente" required="required"/>
 															<div class="help-block with-errors"></div>     
                                                         </div>
                                                     </div>
@@ -208,7 +208,7 @@
                                                     <div class="form-group" th:classappend="${#fields.hasErrors('bairro')} ? has-error">
                                                         <label for="bairro" class="control-label col-md-3">Bairro</label>
                                                         <div class="col-md-9">
-															<input id="bairro" th:field="*{bairro}" type="text" class="form-control" placeholder="Bairro" data-error="Informe o Bairro" required="true"/>
+															<input id="bairro" th:field="*{bairro}" type="text" class="form-control" placeholder="Bairro" data-error="Informe o Bairro" required="required"/>
 															<div class="help-block with-errors"></div>     
                                                         </div>
                                                     </div>
@@ -221,7 +221,7 @@
                                                     <div class="form-group" th:classappend="${#fields.hasErrors('cep')} ? has-error">
                                                         <label for="cep" class="control-label col-md-3">CEP</label>
                                                         <div class="col-md-9">
-															<input id="cep" th:field="*{cep}" type="text" class="form-control" placeholder="Cep" data-error="Informe o cep" required="true"/>
+															<input id="cep" th:field="*{cep}" type="text" class="form-control" placeholder="Cep" data-error="Informe o cep" required="required"/>
 															<div class="help-block with-errors"></div>     
                                                         </div>
                                                     </div>
@@ -251,7 +251,7 @@
 	                                                    <div class="form-group" th:classappend="${#fields.hasErrors('conselhoProfissional')} ? has-error">
 	                                                        <label for="conselhoProfissional" class="control-label col-md-2">Conselho</label>
 	                                                        <div class="col-md-10">
-	                                                            <input id="conselhoProfissional" placeholder="Conselho Profissional" type="text" class="form-control" th:field="*{conselhoProfissional}" data-error="Informe o número Conselho" required="true"/>
+	                                                            <input id="conselhoProfissional" placeholder="Conselho Profissional" type="text" class="form-control" th:field="*{conselhoProfissional}" data-error="Informe o número Conselho" required="required"/>
 	                                                            <div class="help-block with-errors"></div> 
 	                                                        </div>
 	                                                    </div>
@@ -261,7 +261,7 @@
 	                                                    <div class="form-group" th:classappend="${#fields.hasErrors('numeroConselho')} ? has-error">
 	                                                        <label for="numeroConselho" class="control-label col-md-2">Nro Conselho</label>
 	                                                        <div class="col-sm-8">
-	                                                            <input id="numeroConselho" placeholder="numeroConselho" type="text" class="form-control" th:field="*{numeroConselho}" data-error="Informe o número do Conselho" required="true"/> 
+	                                                            <input id="numeroConselho" placeholder="numeroConselho" type="text" class="form-control" th:field="*{numeroConselho}" data-error="Informe o número do Conselho" required="required"/> 
 	                                                       		<div class="help-block with-errors"></div> 
 	                                                        </div>
 	                                                    </div>
@@ -271,7 +271,7 @@
 	                                                    <div class="form-group" th:classappend="${#fields.hasErrors('estadoConselho')} ? has-error">
 	                                                        <label for="estadoConselho" class="control-label col-md-3">UF</label>
 	                                                        <div class="col-md-8">
-	                                                            <input id="estadoConselho" placeholder="estadoConselho" type="text" class="form-control" th:field="*{estadoConselho}" data-error="Informe o estado Conselho" required="true"/> 
+	                                                            <input id="estadoConselho" placeholder="estadoConselho" type="text" class="form-control" th:field="*{estadoConselho}" data-error="Informe o estado Conselho" required="required"/> 
 	                                                        	<div class="help-block with-errors"></div>
 	                                                        </div>
 	                                                    </div>

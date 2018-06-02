@@ -25,9 +25,10 @@ public class Paciente extends Pessoa  implements Serializable {
 
     }
 
-    public Paciente(Long id, String nome) {
+    public Paciente(Long id, String nome ) {
         setId(id);
         setNome(nome);
+        
     }
 
     @ManyToOne

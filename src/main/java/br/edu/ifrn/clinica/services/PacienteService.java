@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifrn.clinica.dto.PacienteDTO;
@@ -14,6 +15,9 @@ import br.edu.ifrn.clinica.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class PacienteService {
+
+	@Autowired
+	private BCryptPasswordEncoder pe;
 	
 	@Autowired
 	private PacienteRepository repo;

@@ -1,0 +1,7 @@
+jdbc:sqlserver://devbanco.database.windows.net:1433;database=devops;user=dev_admin@devbanco;password={your_password_here};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+
+<dependency>
+    <groupId>com.microsoft.sqlserver</groupId>
+    <artifactId>mssql-jdbc</artifactId>
+    <version>6.4.0.jre8</version>
+</dependency>
