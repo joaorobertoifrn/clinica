@@ -3,7 +3,7 @@ package br.edu.ifrn.clinica.services;
 import org.springframework.mail.SimpleMailMessage;
 
 import br.edu.ifrn.clinica.model.AtendimentoAgendado;
-import br.edu.ifrn.clinica.model.Paciente;
+import br.edu.ifrn.clinica.model.Usuario;
 
 public interface EmailService {
 
@@ -11,5 +11,5 @@ public interface EmailService {
 	
 	void sendEmail(SimpleMailMessage msg);
 	
-	void sendNewPasswordEmail(Paciente cliente, String newPass);
+	void sendNewPasswordEmail(Usuario usuario, String newPass);
 }
