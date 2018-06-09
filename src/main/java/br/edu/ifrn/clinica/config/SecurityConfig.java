@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -39,19 +40,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			"/img/**",
 			"/js/**",
 			"/less/**",
-			"/Dashboard/**",
+			"/dashboard/**",
 	};
 
 	private static final String[] PUBLIC_MATCHERS_GET = {
-			"/Paciente/**",
-			"/Profissional/**",
-			"/Convenio/**"
+			"/paciente/**",
+			"/profissional/**",
+			"/convenio/**"
 	};
 
 	private static final String[] PUBLIC_MATCHERS_POST = {
-			"/Paciente/**",
-			"/Profissional/**",
-			"/Convenio/**",
+			"/paciente/**",
+			"/profissional/**",
+			"/convenio/**",
 			"/auth/forgot/**"
 	};
 	
@@ -63,7 +64,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.POST, PUBLIC_MATCHERS_POST).permitAll()
 			.antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll()
 			.antMatchers(PUBLIC_MATCHERS).permitAll()
-			.anyRequest().authenticated();
+			.antMatchers("/usuarios/**").hasRole("ADMIN")
+			.anyRequest().authenticated()
+			.and()
+			.formLogin()
+				.loginPage("/login")
+				.permitAll()
+				.and()
+			.logout()
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+				.and()
+			.exceptionHandling()
+				.accessDeniedPage("/403")
+				.and()
+			.sessionManagement()
+				.invalidSessionUrl("/login");
 		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
 		http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

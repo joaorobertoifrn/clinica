@@ -2,10 +2,10 @@ package br.edu.ifrn.clinica.model.enums;
 
 public enum Perfil {
 	
-	ADMIN(1, "ROLE_ADMIN"),
-	PACIENTE(2, "ROLE_PACIENTE"),
-	ATENDIMENTO(3, "ROLE_ATENDIMENTO"),
-	MEDICO(4, "ROLE_MEDICO");
+	ADMIN(1, "ADMIN"),
+	PACIENTE(2, "PACIENTE"),
+	ATENDIMENTO(3, "ATENDIMENTO"),
+	MEDICO(4, "MEDICO");
 	
 	private int cod;
 	private String descricao;

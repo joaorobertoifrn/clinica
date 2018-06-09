@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -22,7 +23,7 @@ import br.edu.ifrn.clinica.services.ConvenioService;
 
 
 @Controller
-@RequestMapping(value="/Convenio")
+@RequestMapping(value="/convenio")
 public class ConvenioController {
 	
 	private static final String CONVENIO_VIEW = "Convenio/Convenio";
@@ -45,6 +46,7 @@ public class ConvenioController {
 	}
 	
 	@RequestMapping("/novo")
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	public ModelAndView novo() {
 		ModelAndView mv = new ModelAndView(CONVENIO_CADASTRO_VIEW);
 		mv.addObject(new Convenio());
@@ -58,6 +60,7 @@ public class ConvenioController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	public String salvar(@Validated Convenio convenio, Errors errors, RedirectAttributes attributes) {
 		if (errors.hasErrors()) {
 			return CONVENIO_CADASTRO_VIEW;
@@ -65,14 +68,15 @@ public class ConvenioController {
 		try {
 			service.salvar(convenio);
 			attributes.addFlashAttribute("mensagem", "Convenio Salvo com sucesso!");
-			return "redirect:/Convenio/novo";
+			return "redirect:/convenio/novo";
 		} catch (Exception e) {
 			errors.rejectValue("Convenio", null, e.getMessage());
 			return CONVENIO_CADASTRO_VIEW;
 		}
 	}
 	
-	@RequestMapping(value="/Editar/{id}")
+	@RequestMapping(value="/editar/{id}")
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	public ModelAndView edicao(@PathVariable("id") Convenio convenio) {
 		ModelAndView mv = new ModelAndView(CONVENIO_CADASTRO_VIEW); 
 		mv.addObject(convenio);
@@ -80,11 +84,12 @@ public class ConvenioController {
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	public String excluir(@PathVariable Long id, RedirectAttributes attributes) {
 		service.delete(id);
 		
 		attributes.addFlashAttribute("mensagem", "Convenio Excluido com sucesso!");
-		return "redirect:/Convenio/";
+		return "redirect:/convenio/";
 	}
 	
 }

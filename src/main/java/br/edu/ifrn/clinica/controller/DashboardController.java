@@ -15,7 +15,7 @@ public class DashboardController {
 	@Autowired
 	private PacienteRepository pacientes;	
 	
-	@GetMapping("/Dashboard")
+	@GetMapping("/dashboard")
 	public ModelAndView dashboard() {
 		ModelAndView mv = new ModelAndView(DASHBOARD_VIEW);
 		

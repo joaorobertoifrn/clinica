@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -33,7 +34,7 @@ import br.edu.ifrn.clinica.services.ProfissionalService;
 
 
 @Controller
-@RequestMapping(value="/Profissional")
+@RequestMapping(value="/profissional")
 public class ProfissionalController {
 	
 	private static final String PROFISSIONAL_VIEW = "Profissional/Profissional";
@@ -68,6 +69,7 @@ public class ProfissionalController {
 	}
 	
 	@RequestMapping("/novo")
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	public ModelAndView novo() {
 		ModelAndView mv = new ModelAndView(PROFISSIONAL_CADASTRO_VIEW);
 		mv.addObject(new Profissional());
@@ -81,6 +83,7 @@ public class ProfissionalController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	public String salvar(@Validated Profissional profissional, Errors errors, RedirectAttributes attributes) {
 		if (errors.hasErrors()) {
 			return PROFISSIONAL_CADASTRO_VIEW;
@@ -95,7 +98,8 @@ public class ProfissionalController {
 		}
 	}
 	
-	@RequestMapping(value="/Editar/{id}")
+	@RequestMapping(value="/editar/{id}")
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	public ModelAndView edicao(@PathVariable("id") Profissional profissional) {
 		ModelAndView mv = new ModelAndView(PROFISSIONAL_CADASTRO_VIEW); 
 		mv.addObject(profissional);
@@ -107,7 +111,7 @@ public class ProfissionalController {
 		service.delete(id);
 		
 		attributes.addFlashAttribute("mensagem", "Profissional Excluido com sucesso!");
-		return "redirect:/Profissional/";
+		return "redirect:/profissional/";
 	}
 
 	@ModelAttribute("listaCidades")

@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -29,7 +30,7 @@ import br.edu.ifrn.clinica.services.PacienteService;
 
 
 @Controller
-@RequestMapping(value="/Paciente")
+@RequestMapping(value="/paciente")
 public class PacienteController {
 	
 	private static final String PACIENTE_VIEW = "Paciente/Paciente";
@@ -58,6 +59,7 @@ public class PacienteController {
 	}
 	
 	@RequestMapping("/novo")
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	public ModelAndView novo() {
 		ModelAndView mv = new ModelAndView(PACIENTE_CADASTRO_VIEW);
 		mv.addObject(new Paciente());
@@ -71,6 +73,7 @@ public class PacienteController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	public String salvar(@Validated Paciente paciente, Errors errors, RedirectAttributes attributes) {
 		if (errors.hasErrors()) {
 			return PACIENTE_CADASTRO_VIEW;
@@ -78,14 +81,15 @@ public class PacienteController {
 		try {
 			service.salvar(paciente);
 			attributes.addFlashAttribute("mensagem", "Paciente Salvo com sucesso!");
-			return "redirect:/Paciente/novo";
+			return "redirect:/paciente/novo";
 		} catch (Exception e) {
 			errors.rejectValue("Paciente", null, e.getMessage());
 			return PACIENTE_CADASTRO_VIEW;
 		}
 	}
 	
-	@RequestMapping(value="/Editar/{id}")
+	@RequestMapping(value="/editar/{id}")
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	public ModelAndView edicao(@PathVariable("id") Paciente paciente) {
 		ModelAndView mv = new ModelAndView(PACIENTE_CADASTRO_VIEW); 
 		mv.addObject(paciente);
@@ -93,11 +97,12 @@ public class PacienteController {
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	public String excluir(@PathVariable Long id, RedirectAttributes attributes) {
 		service.delete(id);
 		
 		attributes.addFlashAttribute("mensagem", "Paciente Excluido com sucesso!");
-		return "redirect:/Paciente/";
+		return "redirect:/paciente/";
 	}
 	
 	@ModelAttribute("listaCidades")
