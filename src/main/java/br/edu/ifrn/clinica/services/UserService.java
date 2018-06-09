@@ -4,8 +4,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import br.edu.ifrn.clinica.security.UserSS;
 
-
-
 public class UserService {
 	
 	public static UserSS authenticated() {
