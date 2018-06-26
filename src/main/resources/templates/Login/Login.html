@@ -56,18 +56,18 @@
       </div>
       <div class="new-login-box">
                 <div class="white-box">
-                  <form class="form-horizontal new-lg-form" id="loginform" action="index.html">
+                  <form class="form-horizontal new-lg-form" id="loginform" th:action="@{/login}" method="POST">
                     
                     <div class="form-group  m-t-20">
                       <div class="col-xs-12">
                         <label>Email</label>
-                        <input class="form-control" type="text" required="" placeholder="email"/>
+                        <input class="form-control" type="text" placeholder="email" name="email"/>
                       </div>
                     </div>
                     <div class="form-group">
                       <div class="col-xs-12">
                         <label>Senha</label>
-                        <input class="form-control" type="password" required="" placeholder="Senha"/>
+                        <input class="form-control" type="password" placeholder="Senha" name="senha"/>
                       </div>
                     </div>
                     <div class="form-group">

@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import br.edu.ifrn.clinica.model.enums.Perfil;
 
 public class UserSS implements UserDetails {
+
+	
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;

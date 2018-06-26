@@ -11,8 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import br.edu.ifrn.clinica.model.enums.Perfil;
 
 @Entity
@@ -21,7 +19,7 @@ public class Usuario extends Pessoa implements Serializable {
 
     private static final long serialVersionUID = 7254898165069427000L;
     
-    @JsonIgnore
+
     private String senha;
 
     @ElementCollection(fetch=FetchType.EAGER)
