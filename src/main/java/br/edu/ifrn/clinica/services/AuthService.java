@@ -1,12 +1,13 @@
 package br.edu.ifrn.clinica.services;
 
+import java.util.Optional;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import br.com.helpc.gestorvendas.services.exceptions.ObjectNotFoundException;
 import br.edu.ifrn.clinica.model.Usuario;
 import br.edu.ifrn.clinica.repository.UsuarioRepository;
 
@@ -26,10 +27,8 @@ public class AuthService {
 	
 	public void sendNewPassword(String email) {
 		
-		Usuario usuario = usuarioRepository.findByEmail(email);
-		if (usuario == null) {
-			throw new ObjectNotFoundException("Email não encontrado");
-		}
+		Optional<Usuario> usuarioOptional = usuarioRepository.findByEmail(email);
+		Usuario usuario = usuarioOptional.orElseThrow(() -> new UsernameNotFoundException("Usuário e/ou senha incorretos"));		
 		
 		String newPass = newPassword();
 		usuario.setSenha(pe.encode(newPass));

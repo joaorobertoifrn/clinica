@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -33,7 +33,7 @@ import br.edu.ifrn.clinica.repository.ProfissionalRepository;
 import br.edu.ifrn.clinica.services.ProfissionalService;
 
 
-@Controller
+@RestController
 @RequestMapping(value="/profissional")
 public class ProfissionalController {
 	
@@ -91,7 +91,7 @@ public class ProfissionalController {
 		try {
 			service.salvar(profissional);
 			attributes.addFlashAttribute("mensagem", "Profissional Salvo com sucesso!");
-			return "redirect:/Profissional/novo";
+			return "redirect:/profissional/novo";
 		} catch (Exception e) {
 			errors.rejectValue("Profissional", null, e.getMessage());
 			return PROFISSIONAL_CADASTRO_VIEW;

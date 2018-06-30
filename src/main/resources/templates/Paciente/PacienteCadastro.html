@@ -18,7 +18,7 @@
 				<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 					<ol class="breadcrumb">
 						<li><a th:href="@{/}">Dashboard</a></li>
-						<li class="active"><a th:href="@{/Paciente/}">Paciente</a></li>
+						<li class="active"><a th:href="@{/paciente/}">Paciente</a></li>
 					</ol>
 				</div>
 			</div>
@@ -31,7 +31,7 @@
                             <div class="panel-heading"> Cadastro do Paciente</div>
                             <div class="panel-wrapper collapse in" aria-expanded="true">
                                 <div class="panel-body">
-                                    <form class="form-horizontal" method="POST" th:action="@{/Paciente}" th:object="${paciente}">
+                                    <form class="form-horizontal" method="POST" th:action="@{/paciente}" th:object="${paciente}">
                                     	<div layout:include="MensagemGeral"></div>
 										<div layout:include="MensagemErro"></div>
 										<input type="hidden" th:field="*{id}" />
