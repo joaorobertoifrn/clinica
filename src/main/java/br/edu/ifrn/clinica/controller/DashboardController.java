@@ -1,28 +1,38 @@
 package br.edu.ifrn.clinica.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
+import br.edu.ifrn.clinica.dto.DashboardDTO;
+import br.edu.ifrn.clinica.repository.ConvenioRepository;
 import br.edu.ifrn.clinica.repository.PacienteRepository;
+import br.edu.ifrn.clinica.repository.ProfissionalRepository;
 
-@Controller
+@RestController
+@RequestMapping(value="/dashboard")
 public class DashboardController {
-	
-	private static final String DASHBOARD_VIEW = "Dashboard/Dashboard";
 	
 	@Autowired
 	private PacienteRepository pacientes;	
-	
-	@GetMapping("/dashboard")
-	public ModelAndView dashboard() {
-		ModelAndView mv = new ModelAndView(DASHBOARD_VIEW);
+
+	@Autowired
+	private ProfissionalRepository profissionais;	
+
+	@Autowired
+	private ConvenioRepository convenios;	
+
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<DashboardDTO> dashboard() {
 		
-		mv.addObject("totalAgendamento", 50);
-		mv.addObject("totalAtendimentos", 100);
-		mv.addObject("totalPacientes", pacientes.count());
+		DashboardDTO dash = new DashboardDTO();
+		dash.setTotalConvenios(convenios.count());
+		dash.setTotalPacientes(pacientes.count());
+		dash.setTotalProfissionais(profissionais.count());
 		
-		return mv;
+		return  ResponseEntity.ok().body(dash);
 	}
+	
 }
