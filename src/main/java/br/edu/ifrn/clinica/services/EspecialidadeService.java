@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import br.edu.ifrn.clinica.dto.ConvenioDTO;
-import br.edu.ifrn.clinica.model.Convenio;
-import br.edu.ifrn.clinica.repository.ConvenioRepository;
+import br.edu.ifrn.clinica.dto.EspecialidadeDTO;
+import br.edu.ifrn.clinica.model.Especialidade;
+import br.edu.ifrn.clinica.repository.EspecialidadeRepository;
 import br.edu.ifrn.clinica.services.exceptions.DataIntegrityException;
 import br.edu.ifrn.clinica.services.exceptions.ObjectNotFoundException;
 
@@ -16,18 +16,18 @@ import br.edu.ifrn.clinica.services.exceptions.ObjectNotFoundException;
 public class EspecialidadeService {
 	
 	@Autowired
-	private ConvenioRepository repo;
+	private EspecialidadeRepository repo;
 	
-	public Convenio find(Long id) {
-		Convenio obj = repo.findOne(id);
+	public Especialidade find(Long id) {
+		Especialidade obj = repo.findOne(id);
 		if (obj == null) {
 			throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id
-					+ ", Tipo: " + Convenio.class.getName());
+					+ ", Tipo: " + Especialidade.class.getName());
 		}
 		return obj;
 	}
 	
-	public void salvar(Convenio obj) {
+	public void salvar(Especialidade obj) {
 		try {
 			repo.save(obj);
 		} catch (DataIntegrityViolationException e) {
@@ -41,16 +41,15 @@ public class EspecialidadeService {
 			repo.delete(id);
 		}
 		catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível excluir um Convenio");
+			throw new DataIntegrityException("Não é possível excluir um Especialidade");
 		}
 	}
 	
-	public List<Convenio> findAll() {
+	public List<Especialidade> findAll() {
 		return repo.findAll();
 	}
 
-	public Convenio fromDTO(ConvenioDTO objDto) {
-		return new Convenio( objDto.getRegistroANS(), objDto.getRazaoSocial(), objDto.getCnpj(),
-				objDto.getCodigoCNS(), objDto.getTelefone(),objDto.getEmail(), objDto.getPeriodoRetorno());
+	public Especialidade fromDTO(EspecialidadeDTO objDto) {
+		return new Especialidade(objDto.getId(), objDto.getNome());
 	}
 }

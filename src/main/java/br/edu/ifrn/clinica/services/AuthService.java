@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import br.com.helpc.gestorvendas.services.exceptions.ObjectNotFoundException;
+import br.edu.ifrn.clinica.services.exceptions.ObjectNotFoundException;
 import br.edu.ifrn.clinica.model.Usuario;
 import br.edu.ifrn.clinica.repository.UsuarioRepository;
 

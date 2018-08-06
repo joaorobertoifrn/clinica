@@ -27,7 +27,12 @@ public class Especialidade implements Serializable {
     private Long id;
     private String nome;
 
-    public Long getId() {
+    public Especialidade(Long id, String nome) {
+		this.id = id;
+		this.nome = nome;
+	}
+
+	public Long getId() {
         return id;
     }
 
